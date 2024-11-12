@@ -1,13 +1,25 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'data-structure-game';
+  username: string = 'Student';
+  isPortuguese: boolean = false;
+  currentLevel: number = 0;
+  maxLevel: number = 6;
+
+  toggleLanguage() {
+    this.isPortuguese = !this.isPortuguese;
+  }
+
+  setProgress(level: number) {
+    this.currentLevel = level;
+  }
+
+  resetProgress() {
+    this.currentLevel = 0;
+  }
 }
