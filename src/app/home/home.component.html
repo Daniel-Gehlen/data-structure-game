@@ -1,53 +1,7 @@
-<div *ngIf="currentLevel === 0">
-  <h2>Level 1: Definir a classe Queue</h2>
-  <textarea id="code-input-1" #codeInput placeholder="Type your code here"></textarea>
-  <button (click)="submitCode(0, codeInput.value)">Submit Code</button>
-</div>
-
-<div *ngIf="currentLevel === 1">
-  <h2>Level 2: Implement the enqueue method</h2>
-  <p>Define the <code>enqueue</code> method to add nodes to the end of the queue:</p>
-  <pre>enqueue(value) { const newNode = { value: value, next: null }; if (this.isEmpty()) { this.first = newNode; this.last = newNode; } else { this.last.next = newNode; this.last = newNode; } this.size++; return this; }</pre>
-  <textarea id="code-input-2" #codeInput placeholder="Type your code here"></textarea>
-  <button (click)="submitCode(1, codeInput.value)">Submit Code</button>
-</div>
-
-<div *ngIf="currentLevel === 2">
-  <h2>Level 3: Implement the dequeue method</h2>
-  <p>Define the <code>dequeue</code> method to remove nodes from the front of the queue:</p>
-  <pre>dequeue() { if (this.isEmpty()) return null; const removedNode = this.first; this.first = this.first.next; if (this.first === null) { this.last = null; } this.size--; return removedNode.value; }</pre>
-  <textarea id="code-input-3" #codeInput placeholder="Type your code here"></textarea>
-  <button (click)="submitCode(2, codeInput.value)">Submit Code</button>
-</div>
-
-<div *ngIf="currentLevel === 3">
-  <h2>Level 4: Implement the isEmpty method</h2>
-  <p>Define the <code>isEmpty</code> method to check if the queue is empty:</p>
-  <pre>isEmpty() { return this.size === 0; }</pre>
-  <textarea id="code-input-4" #codeInput placeholder="Type your code here"></textarea>
-  <button (click)="submitCode(3, codeInput.value)">Submit Code</button>
-</div>
-
-<div *ngIf="currentLevel === 4">
-  <h2>Level 5: Test enqueue by adding values to the queue</h2>
-  <p>Try adding values to the queue with <code>enqueue</code>:</p>
-  <pre>const fila = new Queue(); fila.enqueue(10); fila.enqueue(20); fila.enqueue(30);</pre>
-  <textarea id="code-input-5" #codeInput placeholder="Type your code here"></textarea>
-  <button (click)="submitCode(4, codeInput.value)">Submit Code</button>
-</div>
-
-<div *ngIf="currentLevel === 5">
-  <h2>Level 6: Test dequeue to remove items from the queue</h2>
-  <p>Try removing values from the queue using <code>dequeue</code>:</p>
-  <pre>fila.dequeue(); fila.dequeue();</pre>
-  <textarea id="code-input-6" #codeInput placeholder="Type your code here"></textarea>
-  <button (click)="submitCode(5, codeInput.value)">Submit Code</button>
-</div>
-
-<!-- Barra de progresso -->
-<div class="progress-bar">
-  <div class="progress-level" *ngFor="let level of levels; let i = index"
-    [class.filled]="i < currentLevel">
-    {{i + 1}}
+<div>
+  <h3>Escolha um nível e insira o código</h3>
+  <div *ngFor="let level of levels">
+    <button (click)="submitCode(level.id, 'codigo')">{{ level.name }}</button>
   </div>
+  <button (click)="resetGame()">Resetar</button>
 </div>

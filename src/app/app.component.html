@@ -6,6 +6,7 @@
   <h1>Bem-vindo, <span id="username-display">{{ username }}</span></h1>
   <p>Let’s Learn Queues!</p>
 
+  <!-- Usando os componentes corretamente -->
   <app-home (progress)="setProgress($event)" (reset)="resetProgress()"></app-home>
 
   <app-progress [currentLevel]="currentLevel" [maxLevel]="maxLevel"></app-progress>

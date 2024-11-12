@@ -1,7 +1,10 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';  // Importe o CommonModule para usar *ngFor
 
 @Component({
   selector: 'app-home',
+  standalone: true,  // Torna o componente standalone
+  imports: [CommonModule],  // Importa o CommonModule para ter acesso a diretivas como *ngFor
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -9,21 +12,23 @@ export class HomeComponent {
   @Output() progress = new EventEmitter<number>();
   @Output() reset = new EventEmitter<void>();
 
-  // Método para submeter o código e avançar o nível
+  levels = [
+    { id: 1, name: 'Level 1' },
+    { id: 2, name: 'Level 2' },
+    { id: 3, name: 'Level 3' }
+  ];
+
   submitCode(level: number, userCode: string) {
-    // Lógica para verificar o código do usuário por nível
-    // Exemplo simplificado, aqui você pode adicionar mais regras para verificar o código do usuário
     if (this.isValidCode(level, userCode)) {
-      this.progress.emit(level + 1); // Avança para o próximo nível
+      this.progress.emit(level + 1);  // Emite o próximo nível
     }
   }
 
   isValidCode(level: number, code: string): boolean {
-    // Lógica para validar o código de cada nível (aqui você pode adicionar regras específicas)
-    return true;
+    return true;  // Lógica de validação do código
   }
 
   resetGame() {
-    this.reset.emit(); // Resetar o progresso
+    this.reset.emit();  // Emite evento de reset
   }
 }
