@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class GameService {
   private currentLevel = 1;
   private currentLanguage = 'en';
-  private texts = {
+  private readonly texts = {
     en: {
       welcome: 'Welcome, ',
       intro: 'This is an introduction to linked lists.',
@@ -74,7 +74,7 @@ export class GameService {
   }
 
   getTexts() {
-    return this.texts[this.currentLanguage];
+    return this.texts[this.currentLanguage as keyof typeof this.texts];
   }
 
   resetProgress() {

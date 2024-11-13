@@ -1,13 +1,24 @@
-<div class="container">
-  <button id="language-toggle" (click)="toggleLanguage()">
-    {{ isPortuguese ? 'Mudar para Inglês' : 'Switch to Portuguese' }}
-  </button>
+<div class="header">
+  <!-- Exibe o nome de usuário ou mensagem de boas-vindas -->
+  <span id="username-display">{{ welcomeMessage }}</span>
 
-  <h1>Bem-vindo, <span id="username-display">{{ username }}</span></h1>
-  <p>Let’s Learn Queues!</p>
-
-  <!-- Usando os componentes corretamente -->
-  <app-home (progress)="setProgress($event)" (reset)="resetProgress()"></app-home>
-
-  <app-progress [currentLevel]="currentLevel" [maxLevel]="maxLevel"></app-progress>
+  <!-- Botão para alternar o idioma -->
+  <button id="language-toggle" (click)="toggleLanguage()">{{ languageToggleText }}</button>
 </div>
+
+<!-- Exibe as instruções do primeiro nível -->
+<p *ngIf="instructions[0]">{{ instructions[0] }}</p>
+
+<!-- Itera sobre os títulos e instruções dos níveis e exibe o componente 'app-level' para cada nível -->
+<div *ngFor="let title of levelTitles; let i = index">
+  <app-level [title]="title"
+             [instruction]="instructions[i]"
+             [level]="i + 1">
+  </app-level>
+</div>
+
+<!-- Exibe as instruções do segundo nível -->
+<p *ngIf="instructions[1]">{{ instructions[1] }}</p>
+
+<!-- Botão para reiniciar o progresso -->
+<button id="reset-button" (click)="resetProgress()">{{ resetButtonText }}</button>

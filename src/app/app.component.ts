@@ -1,29 +1,34 @@
 import { Component } from '@angular/core';
-import { HomeComponent } from './home/home.component';  // Importe o HomeComponent
-import { ProgressComponent } from './progress/progress.component';  // Importe o ProgressComponent
 
 @Component({
   selector: 'app-root',
-  standalone: true,  // Torna o AppComponent standalone
-  imports: [HomeComponent, ProgressComponent],  // Certifique-se de importar os componentes necessários
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  username: string = 'Student';
-  isPortuguese: boolean = false;
-  currentLevel: number = 0;
-  maxLevel: number = 6;
+  welcomeMessage: string = 'Bem-vindo ao Jogo!';
+  languageToggleText: string = 'Trocar Idioma';
+  resetButtonText: string = 'Reiniciar Jogo';
 
+  // Títulos dos níveis
+  levelTitles: string[] = ['Nível 1', 'Nível 2', 'Nível 3'];
+
+  // Instruções para cada nível
+  instructions: string[] = [
+    'Instruções do Nível 1',
+    'Instruções do Nível 2',
+    'Instruções do Nível 3'
+  ];
+
+  // Função para alternar o idioma
   toggleLanguage() {
-    this.isPortuguese = !this.isPortuguese;
+    this.languageToggleText = this.languageToggleText === 'Trocar Idioma' ? 'Change Language' : 'Trocar Idioma';
+    this.welcomeMessage = this.welcomeMessage === 'Bem-vindo ao Jogo!' ? 'Welcome to the Game!' : 'Bem-vindo ao Jogo!';
+    this.resetButtonText = this.resetButtonText === 'Reiniciar Jogo' ? 'Reset Game' : 'Reiniciar Jogo';
   }
 
-  setProgress(level: number): void {
-    this.currentLevel = level;
-  }
-
-  resetProgress(): void {
-    this.currentLevel = 0;
+  // Função para reiniciar o progresso do jogo
+  resetProgress() {
+    console.log('Progresso reiniciado!');
   }
 }

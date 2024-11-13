@@ -1,1 +1,9 @@
-<p>level works!</p>
+<div class="level" *ngIf="getCurrentLevel() >= level">
+  <h2>{{ title }}</h2>
+  <p>{{ instruction }}</p>
+  <textarea [(ngModel)]="userCodeInput" (input)="onCodeInput($event)"></textarea>
+  <button (click)="onSubmitCode()">Submit Code</button>
+  <p>{{ feedback }}</p>
+</div>
+
+
